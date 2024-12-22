@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інформаційна панель</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="navigation">
+    <a href="/dashboard"><button>Головна панель</button></a>
+    <a href="/changes"><button>Переглянути зміни</button></a>
+</div>
+
+    <h1>Інформаційна панель товарів</h1>
+<form method="GET" action="/dashboard">
+    <input type="text" name="search" placeholder="Пошук товару">
+    <button type="submit">Шукати</button>
+</form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Зображення</th>
+                <th>Назва</th>
+                <th>Ціна</th>
+                <th>Кількість в наявності</th>
+                <th>Виробник</th>
+                <th>Оновлено</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for offer in offers %}
+            <tr>
+                <td><img src="{{ offer.picture }}" alt="{{ offer.name }}" width="100"></td>
+                <td>{{ offer.name }}</td>
+                <td>{{ offer.price }}</td>
+                <td>{{ offer.quantity_in_stock }}</td>
+                <td>{{ offer.vendor }}</td>
+                <td>{{ offer.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
